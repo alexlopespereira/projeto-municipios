@@ -1,0 +1,33 @@
+PROJETO MUNICÍPIOS
+
+Esta é a pasta de trabalho do curso Introdução a Agentes de IA — Nivelamento.
+
+NO MÓDULO 3
+1. Extraia todos os arquivos do ZIP antes de abrir o projeto.
+2. No aplicativo do agente, abra a pasta que contém este arquivo e a pasta dados.
+3. Siga os pedidos apresentados na aula.
+4. O agente criará index.html; esse arquivo ainda não vem neste pacote inicial.
+5. Depois da criação, abra index.html no navegador.
+
+OS DADOS
+dados/municipios.csv contém as 5.570 unidades de nível municipal do IBGE em 2022.
+Inclui Brasília e Fernando de Noronha, que têm situação administrativa própria.
+População residente em habitantes: Censo 2022, IBGE/SIDRA, tabela 4714.
+PIB municipal em mil reais: IBGE/SIDRA, tabela 5938, ano de 2022.
+IDEB: resultados municipais do Inep de 2023, rede pública, anos iniciais e
+anos finais do ensino fundamental, na escala de 0 a 10.
+O código de sete dígitos do IBGE relaciona as fontes. Para obter o PIB por
+habitante em reais, multiplique o PIB por mil e divida pela população.
+
+Não substitua um campo vazio de IDEB por zero.
+Mantenha os dados originais para poder conferir o resultado.
+
+AS PASTAS DO TUTOR
+.claude e .agents contêm o tutor para as ferramentas usadas no curso.
+Essas pastas podem ficar ocultas no gerenciador de arquivos.
+O tutor será apresentado no módulo 6.
+
+REQUISITOS DESTE MÓDULO
+Aplicativo do agente instalado e conectado, acesso à internet para conversar com
+o agente, permissão para trabalhar nesta pasta e um navegador.
+O módulo 3 não exige instalar Python, Git, Node.js ou um servidor local.

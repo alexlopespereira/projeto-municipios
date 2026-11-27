@@ -1,0 +1,35 @@
+# Ambientes virtuais do Python
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Cache e arquivos gerados pelo Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.swp
+*.log
+~$*
+.~lock.*#
+
+# Arquivos do sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Segredos e configurações locais
+.env
+segredos/
+.claude/settings.local.json
+
+# Cópias duplicadas de pastas
+* - Copy/
+* - Cópia/
