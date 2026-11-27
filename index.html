@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Os 10 municípios mais populosos em 2022</title>
+  <title>Maior PIB per capita acompanha IDEB mais alto? · Projeto Municípios</title>
+  <meta name="description" content="Associação entre PIB por habitante (2022) e IDEB da rede pública (2023) nos municípios brasileiros.">
   <style>
     :root {
       color-scheme: light;
@@ -12,8 +13,6 @@
       --azul: #246bab;
       --fundo: #eef4f9;
       --linha: #d7e3ee;
-      --escala: 12000000;
-      --colunas: minmax(10rem, 1fr) minmax(0, 3fr) 6.5rem;
     }
 
     *, *::before, *::after {
@@ -24,7 +23,7 @@
       margin: 0;
       background: var(--fundo);
       color: var(--marinho);
-      font: 1rem/1.5 system-ui, "Segoe UI", sans-serif;
+      font: 1rem/1.6 system-ui, "Segoe UI", sans-serif;
     }
 
     main {
@@ -34,26 +33,41 @@
     }
 
     header {
-      text-align: center;
       margin-block-end: 2rem;
+    }
+
+    .kicker {
+      margin: 0 0 .5rem;
+      color: var(--texto-secundario);
+      font-size: .875rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      color: #c62828;
       font-size: clamp(1.75rem, 4.3vw, 2.75rem);
       line-height: 1.12;
       letter-spacing: -.035em;
       text-wrap: balance;
     }
 
-    header p {
+    header .lead {
       margin: .75rem 0 0;
       color: var(--texto-secundario);
+      font-size: 1.125rem;
+      max-width: 48rem;
     }
 
-    .population-chart {
-      margin: 0;
+    h2 {
+      margin: 0 0 .75rem;
+      font-size: 1.35rem;
+      letter-spacing: -.02em;
+    }
+
+    .card {
+      margin: 0 0 1.5rem;
       padding: clamp(1rem, 4vw, 2rem);
       border: 1px solid var(--linha);
       border-radius: 1rem;
@@ -61,85 +75,95 @@
       box-shadow: 0 .65rem 2rem rgb(16 39 70 / 6%);
     }
 
-    ol {
-      margin: 0;
+    .card p {
+      margin: 0 0 .75rem;
+      max-width: 52rem;
+    }
+
+    .card p:last-child {
+      margin-block-end: 0;
+    }
+
+    .destaques {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+      gap: 1rem;
+      margin: 0 0 1.25rem;
       padding: 0;
       list-style: none;
     }
 
-    .row, .eixo {
-      display: grid;
-      grid-template-columns: var(--colunas);
-      column-gap: 1rem;
-      align-items: center;
-    }
-
-    .row {
-      padding-block: .7rem;
-      border-block-end: 1px solid var(--linha);
-    }
-
-    .municipio {
-      font-weight: 650;
-      overflow-wrap: anywhere;
-    }
-
-    .uf, .graduacao, figcaption {
-      color: var(--texto-secundario);
-    }
-
-    .uf {
-      white-space: nowrap;
-      font-size: .875rem;
-      font-weight: 500;
-    }
-
-    .trilho, .barra {
-      display: block;
-      height: .875rem;
-      border-radius: .2rem;
-    }
-
-    .trilho {
+    .destaques li {
+      padding: 1rem;
+      border-radius: .75rem;
       background: var(--fundo);
     }
 
-    .barra {
-      width: calc(var(--populacao) / var(--escala) * 100%);
-      background: var(--azul);
-    }
-
-    .valor {
-      text-align: right;
-      font-weight: 650;
+    .destaques strong {
+      display: block;
+      color: var(--azul);
+      font-size: 2rem;
+      line-height: 1.1;
       font-variant-numeric: tabular-nums;
     }
 
-    .graduacao {
-      grid-column: 2;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      padding-block: .5rem;
-      font-size: .8rem;
+    .destaques span {
+      color: var(--texto-secundario);
+      font-size: .9rem;
     }
 
-    .graduacao span:last-child {
-      text-align: right;
+    figure {
+      margin: 0;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: .5rem;
     }
 
     figcaption {
       margin-block-start: 1rem;
       border-block-start: 1px solid var(--linha);
       padding-block-start: 1rem;
+      color: var(--texto-secundario);
       font-size: .875rem;
     }
 
-    figcaption p {
-      margin: 0;
+    .tabela {
+      overflow-x: auto;
     }
 
-    figcaption p + p {
-      margin-block-start: .35rem;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th, td {
+      padding: .6rem .75rem;
+      border-block-end: 1px solid var(--linha);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--texto-secundario);
+      font-size: .875rem;
+      font-weight: 600;
+    }
+
+    .num {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    code {
+      padding: .1rem .3rem;
+      border-radius: .25rem;
+      background: var(--fundo);
+      font-size: .9em;
     }
 
     a {
@@ -147,24 +171,9 @@
       text-underline-offset: .16em;
     }
 
-    @media (max-width: 42rem) {
-      .row {
-        grid-template-columns: minmax(0, 1fr) auto;
-        row-gap: .45rem;
-      }
-
-      .trilho {
-        grid-column: 1 / -1;
-        grid-row: 2;
-      }
-
-      .eixo {
-        grid-template-columns: 1fr;
-      }
-
-      .graduacao {
-        grid-column: 1;
-      }
+    footer {
+      color: var(--texto-secundario);
+      font-size: .875rem;
     }
 
     @media print {
@@ -172,7 +181,7 @@
         background: white;
       }
 
-      .population-chart {
+      .card {
         box-shadow: none;
         print-color-adjust: exact;
       }
@@ -182,95 +191,67 @@
 <body>
   <main>
     <header>
-      <h1>Os 10 municípios mais populosos em 2022</h1>
-      <p>População residente em habitantes, em ordem decrescente</p>
+      <p class="kicker">Projeto Municípios · Introdução a Agentes de IA — Nivelamento</p>
+      <h1>Maior PIB per capita acompanha IDEB mais alto?</h1>
+      <p class="lead">Municípios com maior PIB por habitante têm IDEB mais alto na rede pública? A análise usa dados públicos dos 5.570 municípios brasileiros.</p>
     </header>
 
-    <figure class="population-chart">
-      <ol role="list" aria-label="Municípios por população residente">
-        <li class="row" data-code="3550308" data-population="11451999">
-          <span class="municipio">São Paulo <span class="uf">/ SP</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 11451999"></span>
-          </span>
-          <span class="valor">11.451.999</span>
-        </li>
-        <li class="row" data-code="3304557" data-population="6211223">
-          <span class="municipio">Rio de Janeiro <span class="uf">/ RJ</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 6211223"></span>
-          </span>
-          <span class="valor">6.211.223</span>
-        </li>
-        <li class="row" data-code="5300108" data-population="2817381">
-          <span class="municipio">Brasília <span class="uf">/ DF</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 2817381"></span>
-          </span>
-          <span class="valor">2.817.381</span>
-        </li>
-        <li class="row" data-code="2304400" data-population="2428708">
-          <span class="municipio">Fortaleza <span class="uf">/ CE</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 2428708"></span>
-          </span>
-          <span class="valor">2.428.708</span>
-        </li>
-        <li class="row" data-code="2927408" data-population="2417678">
-          <span class="municipio">Salvador <span class="uf">/ BA</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 2417678"></span>
-          </span>
-          <span class="valor">2.417.678</span>
-        </li>
-        <li class="row" data-code="3106200" data-population="2315560">
-          <span class="municipio">Belo Horizonte <span class="uf">/ MG</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 2315560"></span>
-          </span>
-          <span class="valor">2.315.560</span>
-        </li>
-        <li class="row" data-code="1302603" data-population="2063689">
-          <span class="municipio">Manaus <span class="uf">/ AM</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 2063689"></span>
-          </span>
-          <span class="valor">2.063.689</span>
-        </li>
-        <li class="row" data-code="4106902" data-population="1773718">
-          <span class="municipio">Curitiba <span class="uf">/ PR</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 1773718"></span>
-          </span>
-          <span class="valor">1.773.718</span>
-        </li>
-        <li class="row" data-code="2611606" data-population="1488920">
-          <span class="municipio">Recife <span class="uf">/ PE</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 1488920"></span>
-          </span>
-          <span class="valor">1.488.920</span>
-        </li>
-        <li class="row" data-code="5208707" data-population="1437366">
-          <span class="municipio">Goiânia <span class="uf">/ GO</span></span>
-          <span class="trilho" aria-hidden="true">
-            <span class="barra" style="--populacao: 1437366"></span>
-          </span>
-          <span class="valor">1.437.366</span>
-        </li>
-      </ol>
-      <div class="eixo" aria-hidden="true">
-        <div class="graduacao">
-          <span>0</span>
-          <span>6 milhões</span>
-          <span>12 milhões</span>
-        </div>
+    <section class="card" aria-labelledby="encontramos">
+      <h2 id="encontramos">O que encontramos</h2>
+      <ul class="destaques">
+        <li><strong>+0,378</strong><span>Spearman nos anos iniciais do ensino fundamental, com 5.430 municípios com nota</span></li>
+        <li><strong>+0,366</strong><span>Spearman nos anos finais do ensino fundamental, com 5.382 municípios com nota</span></li>
+      </ul>
+      <p>Há uma associação positiva e moderada entre PIB por habitante e IDEB nas duas etapas do ensino fundamental da rede pública.</p>
+      <p>A associação, por si só, não demonstra causalidade, e PIB por habitante mede produção econômica por pessoa, não renda familiar.</p>
+    </section>
+
+    <section class="card" aria-labelledby="grafico">
+      <h2 id="grafico">PIB per capita e IDEB, Brasil</h2>
+      <figure>
+        <img src="graficos/pib-per-capita-ideb.png" width="1600" height="860"
+             alt="Dois gráficos de dispersão lado a lado, anos iniciais e anos finais. Cada ponto é um município com IDEB disponível. O eixo horizontal mostra o PIB per capita de 2022 em reais, em escala logarítmica de 5.000 a 1.000.000; o eixo vertical mostra o IDEB 2023 de 0 a 10. Nos anos iniciais, Spearman +0,378, com 5.430 municípios com IDEB e 140 sem. Nos anos finais, Spearman +0,366, com 5.382 com IDEB e 188 sem. Nas duas etapas, a nuvem de pontos sobe levemente conforme o PIB per capita aumenta.">
+        <figcaption>PIB per capita de 2022 e IDEB de 2023 da rede pública. Gerado por <code>python .\analise.py --pib-ideb</code>.</figcaption>
+      </figure>
+    </section>
+
+    <section class="card" aria-labelledby="cobertura">
+      <h2 id="cobertura">Cobertura nacional</h2>
+      <div class="tabela">
+        <table>
+          <thead>
+            <tr><th scope="col">Etapa</th><th scope="col" class="num">Com IDEB</th><th scope="col" class="num">Sem IDEB</th><th scope="col" class="num">Spearman</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Anos iniciais</th><td class="num">5.430</td><td class="num">140</td><td class="num">+0,378</td></tr>
+            <tr><th scope="row">Anos finais</th><td class="num">5.382</td><td class="num">188</td><td class="num">+0,366</td></tr>
+          </tbody>
+        </table>
       </div>
-      <figcaption>
-        <p>Fonte dos dados — <a href="https://sidra.ibge.gov.br/tabela/4714">IBGE · Censo Demográfico 2022 · SIDRA, tabela 4714</a>. Os valores vêm de <a href="dados/municipios.csv">dados/municipios.csv</a>.</p>
-        <p>Brasília integra a base de nível municipal do IBGE e tem situação administrativa própria.</p>
-      </figcaption>
-    </figure>
+      <p style="margin-block-start: 1rem">Das 5.570 unidades da base, 289 ficaram sem nota em pelo menos uma etapa. Entre as 5.281 com as duas notas, Spearman foi +0,380 nos anos iniciais e +0,367 nos anos finais.</p>
+      <p>Cada município tem o mesmo peso. Campos vazios de IDEB significam ausência de valor, não nota zero.</p>
+    </section>
+
+    <section class="card" aria-labelledby="fontes">
+      <h2 id="fontes">De onde vêm os dados</h2>
+      <div class="tabela">
+        <table>
+          <thead>
+            <tr><th scope="col">Indicador</th><th scope="col">Ano</th><th scope="col">Fonte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>População residente</td><td>2022</td><td>Censo 2022, IBGE/SIDRA, tabela 4714</td></tr>
+            <tr><td>PIB municipal, em mil reais</td><td>2022</td><td>IBGE/SIDRA, tabela 5938</td></tr>
+            <tr><td>IDEB da rede pública, anos iniciais e finais do ensino fundamental</td><td>2023</td><td>Inep</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-block-start: 1rem">As fontes foram relacionadas pelo código de sete dígitos do IBGE. O PIB por habitante, em reais, é <code>pib_mil_reais * 1000 / populacao</code>. A base usada está em <a href="dados/municipios.csv">dados/municipios.csv</a>.</p>
+    </section>
+
+    <footer>
+      <p>Decisões da análise, documentação da base e instruções de reprodução estão no <a href="https://github.com/alexlopespereira/projeto-municipios">repositório do projeto</a>: <a href="https://github.com/alexlopespereira/projeto-municipios/blob/main/README.md">README</a>, <a href="https://github.com/alexlopespereira/projeto-municipios/blob/main/pib-ideb.md">pib-ideb.md</a> e <a href="https://github.com/alexlopespereira/projeto-municipios/blob/main/dados/LEIA-ME.md">dados/LEIA-ME.md</a>.</p>
+    </footer>
   </main>
 </body>
 </html>
